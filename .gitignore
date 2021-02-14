@@ -37,3 +37,6 @@ vignettes/*.pdf
 
 # Numpy Files (BIG)
 *.npy
+
+# exclude response curves from exclusion
+!/utilsLib/responseCurves/*.npy
