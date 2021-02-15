@@ -14,5 +14,5 @@ which installer/library-manager you are using:
 - numpy
 - matplotlib
 
-## TO-Do
+## TO-DO
 [ ] Finish and submit bachelor thesis =)
