@@ -16,3 +16,4 @@ which installer/library-manager you are using:
 
 ## TO-DO
 [ ] Finish and submit bachelor thesis =)
+[ ] vor der Veröffentlichung Uni Wue referenzieren
