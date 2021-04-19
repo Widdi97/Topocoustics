@@ -6,7 +6,7 @@ import numpy as np
 from threading import Thread
 
 
-""" 71 aktive Zeilen
+"""
 Simple utility for playing and recording audio.
 
 TODO:
@@ -47,7 +47,7 @@ class AudioSweep:
             self.f_t = 2 * self.f_0 + (self.f_1 - self.f_0)/self.seconds*self.timeline # = self.f_0 + (self.f_1 - self.f_0)/self.seconds*self.timeline
         else:
             self.f_t = self.f_0*(self.f_1/self.f_0)**(self.timeline/self.seconds)
-        note = np.sin(self.f_t * self.timeline * np.pi) # np.sin(self.f_t * self.timeline * 2 * np.pi)
+        note = np.sin(self.f_t * self.timeline * np.pi) # np.sin(self.f_t * self.timeline * 2 * np.pi) bug der library? -> kein Faktor 2 im sinus -> so passt der output
         self.f_t = self.f_t.astype(np.float32)
         self.timeline = self.timeline.astype(np.float32)
         # Ensure that highest value is in 16-bit range
@@ -56,18 +56,7 @@ class AudioSweep:
         np.save(self.fileNamePrefix+"speaker",audio)
         # Convert to 32-bit data
         audio = audio.astype(np.int16)
-        # Start playback
-        
-        
-        
-        
-        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        
-        
-        
-        
-        
-        play_obj = sa.play_buffer(audio, 1, 2, self.SampleRate) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  bytes per sample auf 1 setzen
+        play_obj = sa.play_buffer(audio, 1, 2, self.SampleRate) # bytes per sample auf 1 setzen! -> bug der library
         # Wait for playback to finish before exiting
         play_obj.wait_done()
 #        write(self.fileNamePrefix+'speaker.wav', self.SampleRate, audio)  # Save as WAV file
@@ -77,9 +66,6 @@ class AudioSweep:
     
     def recorder(self): #exports float32 array
         myrecording = sd.rec(int(self.seconds * self.SampleRate), samplerate=self.SampleRate, channels=2)
-#        myrecording = myrecording.astype(np.int16)
-#        myrecording=(myrecording>>16).astype(np.int16) 
-#        myrecording=(myrecording/(2**32)*2**8).astype(np.int8)
         sd.wait()  # Wait until recording is finished
 #        write(self.fileNamePrefix+'mic.wav', self.SampleRate, myrecording)  # Save as WAV file
         np.save(self.fileNamePrefix+"mic",myrecording[:,0:1])
@@ -87,9 +73,6 @@ class AudioSweep:
         
     def recordBackground(self):
         myrecording = sd.rec(int(self.seconds * self.SampleRate), samplerate=self.SampleRate, channels=1)
-#        myrecording = myrecording.astype(np.int16)
-#        myrecording=(myrecording>>16).astype(np.int16) 
-#        myrecording=(myrecording/(2**32)*2**8).astype(np.int8)
         sd.wait()  # Wait until recording is finished
 #        write(self.fileNamePrefix+'background.wav', self.SampleRate, myrecording)  # Save as WAV file
         np.save(self.fileNamePrefix+"background",myrecording)

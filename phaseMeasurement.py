@@ -5,9 +5,12 @@ from utilsLib import audio
 import scipy
 import time
 
+"""
+performs measurement, fits sin-curves and calculates the relative phase between l
+eft and right mic input for specified frequencies
+"""
 
-
-class phaseCalc: # returns the sample offset of highest correlation
+class phaseCalc:
     def __init__(self):
         self.w = 1 # placeholder for initiation
     

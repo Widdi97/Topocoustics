@@ -12,7 +12,7 @@ def visualize():
                                       xextent=(frequ[0],frequ[-1]),interpolation="gaussian")
     plt.xlabel("Speaker frequency [Hz]")
     plt.ylabel("Microphone frequency [Hz]")
-    plt.colorbar(cax).set_label('Power spectral density [dB]') #Intensity [dB]??
+    plt.colorbar(cax).set_label('Power spectral density [dB]')
 #    plt.xlim(3500,4000)
     plt.xlim(frequ[0],frequ[-1])
 #    plt.title("FFT heatmap")
@@ -22,11 +22,11 @@ def visualize():
 
 
 sweepTime = 15 # [s]
-sampleRate = 44100#96000#192000,88200,44100 # Wichtig: Muss auch in der Audio-Systemsteuerung eingestellt werden
+sampleRate = 44100#96000#192000,88200,44100 # Wichtig: Muss auch in der Audio-Systemsteuerung eingestellt werden!
 
 
-#a = audio.AudioSweep(100,20000,sweepTime,sampleRate,False,False)#16250
-#a.play()
+a = audio.AudioSweep(100,20000,sweepTime,sampleRate,False,False)#16250
+a.play()
 
 print("time: ",time.time())
 speaker = np.load("speaker.npy")
