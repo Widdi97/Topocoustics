@@ -13,5 +13,4 @@ which installer/library-manager you are using:
 - matplotlib
 
 ## TO-DO
-[ ] Finish and submit bachelor thesis =)
-[ ] vor der Veröffentlichung Uni Wue referenzieren
+[ ] Implement audacity python libraries -> better control over latency
